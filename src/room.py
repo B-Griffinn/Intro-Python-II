@@ -13,7 +13,7 @@ class Room:
         self.e_to = None
         self.w_to = None
         # Add the ability to add items to rooms.
-        self.back_pack = []
+        self.back_pack = [] # holds my items
 
 # Class Check
 r1 = Room('Foyer', 'Small but cozy')

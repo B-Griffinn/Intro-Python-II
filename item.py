@@ -10,4 +10,4 @@ class Item:
 
 # Item Check
 item1 = Item('Cell Phone', 'Means of Communication')
-print(f'You are holding a {item1.name} and it is a {item1.description}')
+print(f'You are holding a {item1.name} and it is your only {item1.description}')
