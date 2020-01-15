@@ -1,4 +1,41 @@
+### where the main logic for the game should live
+
 from room import Room
+import sys
+
+# 1. Add a REPL parser to adv.py that accepts directional commands to move the player
+args = sys.argv
+
+user_input_direction = input('Please enter a directional command: n, s, e, or w ~~~> ')
+if user_input_direction == '':
+    print('You did not choose a direction!')
+else:
+    print(f'You chose {user_input_direction}! ')
+
+# print return North if user enters 'n'
+if user_input_direction == 'n':
+    north = 'North'
+    print(f'You chose to go {north}!')
+
+# print return South if user enters 's'
+elif user_input_direction == 's':
+    south = 'South'
+    print(f'You chose to go {south}!')
+
+# print return East if user enters 'e'
+elif user_input_direction == 'e':
+    east = 'East'
+    print(f'You chose to go {east}!')
+
+# print return West if user enters 'w'
+elif user_input_direction == 'w':
+    west = 'West'
+    print(f'You chose to go {west}!')
+
+else:
+    print('Please provide a valid direction in the following format: n, s, e, or w. ')
+
+
 
 # Declare all the rooms
 
