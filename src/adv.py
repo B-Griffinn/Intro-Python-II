@@ -1,40 +1,8 @@
 ### where the main logic for the game should live
 
 from room import Room
-import sys
-
-# 1. Add a REPL parser to adv.py that accepts directional commands to move the player
-args = sys.argv
-
-user_input_direction = input('Please enter a directional command: n, s, e, or w ~~~> ')
-if user_input_direction == '':
-    print('You did not choose a direction!')
-else:
-    print(f'You chose {user_input_direction}! ')
-
-# print return North if user enters 'n'
-if user_input_direction == 'n':
-    north = 'North'
-    print(f'You chose to go {north}!')
-
-# print return South if user enters 's'
-elif user_input_direction == 's':
-    south = 'South'
-    print(f'You chose to go {south}!')
-
-# print return East if user enters 'e'
-elif user_input_direction == 'e':
-    east = 'East'
-    print(f'You chose to go {east}!')
-
-# print return West if user enters 'w'
-elif user_input_direction == 'w':
-    west = 'West'
-    print(f'You chose to go {west}!')
-
-else:
-    print('Please provide a valid direction in the following format: n, s, e, or w. ')
-
+from player import Player
+from item import Item
 
 
 # Declare all the rooms
@@ -70,11 +38,26 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+# create items 
+game_map = Item('Map', 'Follow the arrows to treasure.')
+game_key = Item('Key', 'This key unlocks a treasure chest.')
+game_lantern = Item('Lantern', 'This may help you find your way.')
+
+
+
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+player1 = Player(input('Please enter your name: '), room['outside'])
+print(player1.current_room)
+
+# Make a new item object
+
+
 
 # Write a loop that:
 #
@@ -86,3 +69,23 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+directions = ['n', 's', 'e', 'w']
+
+## Create basic REPL loop 
+while True:
+    # Read command
+    cmd = input("~~~> ").lower()
+
+    # check if it is n/s/e/w or q
+    if cmd in directions:
+        # Make player travel in that direction
+        player1.travel(cmd)
+        
+    elif cmd == 'q':
+        # Quit
+        print('Goodbye!')
+        break
+    else:
+        print('I did not recognize that command.')
+    # if so, cxecute the proper command
