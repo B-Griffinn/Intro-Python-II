@@ -54,10 +54,13 @@ x = True
 #
 # If the user enters "q", quit the game.
 
+possible_directions = ['n', 's', 'e', 'w']
+
 while x:
     print(f"\n{p1.player_name} {p1.current_room}\n")
 
     direction = input("Please enter 'n', 's', 'e', 'w': ").lower()
     print(direction)
 
-    if direction == 'n':
+    if direction in possible_directions:
+        p1.change_room(p1.current_room, direction)
