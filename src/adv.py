@@ -1,9 +1,4 @@
-### where the main logic for the game should live
-
 from room import Room
-from player import Player
-from item import Item
-
 
 # Declare all the rooms
 
@@ -38,26 +33,11 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-# create items 
-game_map = Item('Map', 'Follow the arrows to treasure.')
-game_key = Item('Key', 'This key unlocks a treasure chest.')
-game_lantern = Item('Lantern', 'This may help you find your way.')
-
-
-
-
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
-player1 = Player(input('Please enter your name: '), room['outside'])
-print(player1.current_room)
-
-# Make a new item object
-
-
 
 # Write a loop that:
 #
@@ -69,23 +49,3 @@ print(player1.current_room)
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-
-directions = ['n', 's', 'e', 'w']
-
-## Create basic REPL loop 
-while True:
-    # Read command
-    cmd = input("~~~> ").lower()
-
-    # check if it is n/s/e/w or q
-    if cmd in directions:
-        # Make player travel in that direction
-        player1.travel(cmd)
-        
-    elif cmd == 'q':
-        # Quit
-        print('Goodbye!')
-        break
-    else:
-        print('I did not recognize that command.')
-    # if so, cxecute the proper command
