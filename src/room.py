@@ -16,4 +16,6 @@ class Room:
         return f"{self.room_name}. {self.room_description}.\n"
 
 # r1 = Room("Laundry", "Lots of laundry to fold")
-# print(r1)
+# print(r1.change_rooms("n"))
+# print(r1.change_directions("n"))
+# print(r1.moved_north("n"))
