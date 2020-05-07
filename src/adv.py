@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import random
 
 # Declare all the rooms
 
@@ -37,33 +38,80 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-
 # Make a new player object that is currently in the 'outside' room.
 player1 = Player("Ben", room['outside'])
 # print(player1)
 
 ## Cardinal Directions allowed
+card_directions = ['n', 'north', 's', 'south', 'e', 'east', 'w', 'west']
 
+# Add items to the game that the user can carry around
+game_items = ['candle', 'key', 'shovel']
 
 x = True
 while x:
 
-    print(player1)
+    user_input = input("Please enter a cardinal direction or 'q' to quit. You may also enter `bp` in order to view your backpack whenever you see this message ~~> ").lower()
 
-    user_input = input("Please enter a cardinal direction ~~> ").lower()
+    print(f"\nYou chose to move {user_input}\n")
+    
+    ### A PLAYER CHANGES ROOMS ###
+    if user_input in card_directions:
+        # CHANGE ROOMS 
+        player1.change_rooms(player1.current_room, user_input)
 
-    print(f"\nYou chose {user_input}")
-    player1.change_rooms(player1.current_room, user_input)
-    print(player1.current_room)
+        # ADD RANDOM ITEM TO ROOM
+        player1.current_room.add_item_to_room(random.choice(game_items))
+
+        # ADD ITEM TO PLAYERS BACK PACK
+        print('player1.current_room.items', player1.current_room.items)
+        player1.get_item(player1.current_room.items[0], player1.current_room)
+
+        print(f'''
+            {player1}
+        ''')
+        ## IF USER_INPUT IS `BP` OPEN/SHOW THEIR BP AND LET THEM REMOVE ##
+    elif user_input == 'bp':
+        print('Here is what you are carring in your backpack: ', player1.back_pack)
+        # # REMOVE ITEM FROM PLAYERS BACK PACK # 
+        player1.remove_item()
+
+    # TODO
+    ## ONLY DISPLAY RGN CHEST IN SELECT ROOMS ##
+    # print(f'''
+    # You stumbled upon a chest. Here is what you may choose from that chest: {game_items}.
+    # ''')
+    # item_choice = input("Enter `take *item name*` to pick up a random item or `no` to move on without an item. ")
+
+    # split the users input in order to take item
+    # split_item_choice = item_choice.split(' ')
+    # print('split item [1]', split_item_choice[1])
+
+    # CHECK IF THE ITEM THE USER CHOSE IS IN THE GAME ITEMS LIST #
+    # if split_item_choice[0] == 'take' and split_item_choice[1] in game_items:
+    #     player1.get_item(split_item_choice[1])
+
+    ## ## ## ## ## ## END OF TAKE ITEM ## ## ## ## ## ## ## ## ##
+
+    # TODO 
+    ## WILL NEED FOR BACKBACK CONDITIONAL ##
+        # if item_choice == 'no':
+        #     print('''
+        #     Sorry the collection is limited.\n
+        #     ''')
+        # if user_input == 'q':
+        #     print('''
+        #     Thank you for playing. Come back soon!\n
+        #     ''')
+        #     break
+
+    if user_input == 'q':
+        print("\nThank you for playing. Come back soon!\n")
+        break
+        # print(player1.current_room)
 
 
-
-
-
-
-
-
-    ## **** NAIVE APPROACH **** ##
+    # # **** NAIVE APPROACH **** ##
     # if user_input == 'n' or user_input == 'north':
     #     player1.current_room = player1.current_room.n_to
     # elif user_input == 's' or user_input == 'south':
@@ -79,6 +127,23 @@ while x:
     #     print("Please enter a cardinal direction such as `n`, `s`, `e`, `w` or even the full direction name such as `North`.")
 
         
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+    ## UPDATE DIRCTIONS GIVEN TO A FULL WORD ##
+        ## Function to convert dirctions into full words: n == North ##
+    # def convert_directions(direction):
+    #     new_direction = ''
+    #     if direction == 'n':
+    #         new_direction += 'North'
+    #         # return direction
+    #     elif direction == 's':
+    #         new_direction += 'South'
+    #         # return direction
+    #     elif direction == 'e':
+    #         new_direction += 'East'
+    #         # return direction
+    #     elif direction == 'w':
+    #         new_direction += 'West'
+    #         # return direction
+    #     return new_direction
+
+    # convert_directions(user_input)
+   
