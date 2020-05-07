@@ -11,17 +11,18 @@ class Player:
         self.back_pack = []
 
 
-    # TAKE ITEM #
-    def get_item(self, item_taken_by_player, room):
+    # TAKE ITEM METHOD #
+    def get_item(self, item, room):
         # TAKE ITEM FROM ROOM # 
-        item_taken_by_player = input('''
-        You may take the item by entering `take *item name*` (below) or press `enter` to continue without taking. 
-        ''').lower()
+        item_taken_by_player = input(f"You may take the {item} by entering `take *item name*` (below) or press `enter` to continue without taking.").lower()
+
         # SPLIT THE INPUT IN ORDER TO CHECK IF THE USER DROPPED CORRECTLY ##
         split_take_item = item_taken_by_player.split(' ')
-        print('split_take_item[0]', split_take_item[0])
-        print('split_take_item[1]', split_take_item[1])
-        print('current_room', self.current_room)
+
+        # PRINT STATEMENTS TO CHECK INPUT
+        # print('split_take_item[0]', split_take_item[0])
+        # print('split_take_item[1]', split_take_item[1])
+        # print('current_room', self.current_room)
         
         if split_take_item[0] == 'take' and split_take_item[1] in room.items:
             self.back_pack.append(split_take_item[1])
@@ -31,7 +32,7 @@ class Player:
         if len(self.back_pack) >= 1:
             print( f"\nYou are carrying {self.back_pack} in your backpack.\n")
 
-    # DROP ITEM #
+    # DROP ITEM METHOD #
     def remove_item(self):
         # REMOVE ITEM FROM PLAYERS BACK PACK # 
         item_dropped_by_player = input('''
@@ -54,7 +55,7 @@ class Player:
     
     # PRINT STR FORMAT #
     def __str__(self):
-        return f"\n{self.player_name} is currently {self.current_room}"
+        return f"{self.player_name} is currently {self.current_room}"
 
 # p1 = Player("Player1", "Main Lobby")
 # print(p1.change_rooms("Player1", "n"))
