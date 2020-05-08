@@ -86,7 +86,7 @@ while x:
         ''')
         ## IF USER_INPUT IS `BP` OPEN/SHOW THEIR BP AND LET THEM REMOVE ##
     elif user_input == 'bp':
-        print('Here is what you are carring in your backpack: ', player1.back_pack)
+        print('Here is what you are carrying in your backpack: ', player1.back_pack)
         # # REMOVE ITEM FROM PLAYERS BACK PACK # 
         player1.remove_item()
 
